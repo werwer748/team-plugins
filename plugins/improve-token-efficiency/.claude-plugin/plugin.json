@@ -1,0 +1,7 @@
+{
+  "name": "improve-token-efficiency",
+  "description": "Claude Code 세션 로그(~/.claude/projects/의 JSONL)를 파싱해 repo 단위로 토큰·캐시 효율과 비용을 집계하고 점수화한다. HTML 대시보드와 비용($) 절감안을 만든다.",
+  "author": { "name": "jha0313", "url": "https://github.com/jha0313" },
+  "homepage": "https://github.com/jha0313/skills_repo/tree/main/improve-token-efficiency",
+  "keywords": ["token", "cost", "efficiency", "usage", "dashboard"]
+}

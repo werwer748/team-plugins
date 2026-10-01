@@ -1,6 +1,6 @@
 {
   "name": "team-plugins",
-  "description": "팀이 함께 쓰는 Claude Code 플러그인 — LLM Wiki 운영, AI 준비도 채점, Harness 프레임워크",
+  "description": "팀이 함께 쓰는 Claude Code 플러그인 — LLM Wiki 운영, AI 준비도 채점, Harness 프레임워크, 토큰 효율 분석",
   "owner": {
     "name": "hugo"
   },
@@ -22,6 +22,11 @@
       "name": "harness",
       "source": "./plugins/harness",
       "description": "Harness 프레임워크: docs 기반 step 설계와 순차 실행, 리뷰"
+    },
+    {
+      "name": "improve-token-efficiency",
+      "source": "./plugins/improve-token-efficiency",
+      "description": "Claude Code 세션 로그로 토큰·캐시 효율과 비용을 점수화하고 HTML 대시보드와 절감안 생성"
     }
   ]
 }

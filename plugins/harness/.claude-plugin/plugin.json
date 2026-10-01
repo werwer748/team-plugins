@@ -1,0 +1,7 @@
+{
+  "name": "harness",
+  "description": "Harness 프레임워크로 작업을 진행한다. docs(PRD·ARCHITECTURE·ADR)를 근거로 구현을 step으로 쪼개 phases/에 기록하고, execute.py가 step마다 독립된 Claude 세션으로 순차 실행한다. 변경 사항을 문서 기준으로 점검하는 review 포함.",
+  "author": { "name": "jha0313", "url": "https://github.com/jha0313" },
+  "homepage": "https://github.com/jha0313/harness_framework",
+  "keywords": ["harness", "sdd", "spec-driven", "phases", "tdd"]
+}

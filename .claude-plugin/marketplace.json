@@ -1,0 +1,22 @@
+{
+  "name": "team-plugins",
+  "description": "팀이 함께 쓰는 Claude Code 플러그인 — LLM Wiki 운영, AI 준비도 채점",
+  "owner": {
+    "name": "hugo"
+  },
+  "plugins": [
+    {
+      "name": "wiki",
+      "source": "./plugins/wiki",
+      "description": "LLM Wiki vault 운영: ingest, query, lint"
+    },
+    {
+      "name": "ai-readiness-score",
+      "source": {
+        "source": "github",
+        "repo": "werwer748/ai-readiness-score"
+      },
+      "description": "repo의 AI 에이전트 준비도를 7개 카테고리·100점 만점으로 채점"
+    }
+  ]
+}

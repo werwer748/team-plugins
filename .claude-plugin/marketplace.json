@@ -13,8 +13,8 @@
     {
       "name": "ai-readiness-score",
       "source": {
-        "source": "github",
-        "repo": "werwer748/ai-readiness-score"
+        "source": "url",
+        "url": "https://github.com/werwer748/ai-readiness-score.git"
       },
       "description": "repo의 AI 에이전트 준비도를 7개 카테고리·100점 만점으로 채점"
     }

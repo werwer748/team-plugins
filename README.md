@@ -6,8 +6,10 @@
 |---|---|---|
 | `wiki` | `/wiki-ingest`, `/wiki-query`, `/wiki-lint` | LLM Wiki vault(`raw/` + `wiki/`) 운영 |
 | `ai-readiness-score` | `/ai-readiness-score` | repo의 AI 에이전트 준비도를 100점 만점으로 채점 |
+| `harness` | `/harness:harness`, `/harness:review` | docs 기반으로 구현을 step으로 쪼개 순차 실행하고 리뷰 |
+| `improve-token-efficiency` | `/improve-token-efficiency` | Claude Code 세션 로그로 토큰·캐시 효율과 비용을 점수화하고 절감안 제시 |
 
-`ai-readiness-score`는 [원본 repo](https://github.com/werwer748/ai-readiness-score)를 그대로 참조합니다.
+`ai-readiness-score`는 [원본 repo](https://github.com/werwer748/ai-readiness-score)를 그대로 참조합니다. `harness`는 [jha0313/harness_framework](https://github.com/jha0313/harness_framework)를, `improve-token-efficiency`는 [jha0313/skills_repo](https://github.com/jha0313/skills_repo/tree/main/improve-token-efficiency)의 스킬을 플러그인으로 옮긴 것입니다.
 
 ## 설치
 
@@ -15,6 +17,8 @@
 claude plugin marketplace add werwer748/team-plugins
 claude plugin install wiki@team-plugins
 claude plugin install ai-readiness-score@team-plugins
+claude plugin install harness@team-plugins
+claude plugin install improve-token-efficiency@team-plugins
 ```
 
 ## 사용법
@@ -45,10 +49,37 @@ claude plugin install ai-readiness-score@team-plugins
 
 Python 3.8+가 필요합니다. 자세한 내용은 [원본 README](https://github.com/werwer748/ai-readiness-score/blob/main/README.ko.md)를 보세요.
 
+### harness
+
+작업할 프로젝트 루트에서:
+
+```
+/harness:harness     # docs 탐색 → 논의 → step 설계 → phases/ 파일 생성 → 실행
+/harness:review      # 변경 사항을 CLAUDE.md·ARCHITECTURE·ADR 기준으로 점검
+```
+
+프로젝트에 `docs/`가 없으면 첫 실행 때 템플릿(`CLAUDE.md`, `docs/`, `.claude/settings.json`, `.gitignore`)을 복사합니다. `{...}` 자리를 채운 뒤 다시 실행하세요.
+
+step 실행기(`execute.py`)는 Python 3와 `claude` CLI가 필요합니다. step마다 `claude -p --dangerously-skip-permissions`로 권한 확인 없이 실행하고 `feat-{task-name}` 브랜치에 자동 커밋하므로, 믿을 수 있는 프로젝트에서만 쓰세요.
+
+### improve-token-efficiency
+
+분석할 repo에서:
+
+```
+/improve-token-efficiency     # 세션 로그 분석 → 점수화 → HTML 대시보드와 절감안
+```
+
+말로 해도 됩니다: *"토큰 효율 분석해줘"*, *"세션 비용 분석해줘"*. `harness`가 돌린 step 세션만 보려면 *"headless 세션만 분석해줘"*라고 하세요(`--entrypoint sdk-cli`).
+
+`~/.claude/projects/`에 쌓인 그 repo의 세션 로그를 읽어 `/tmp/efficiency_report.html`을 만듭니다. Python 3.9+가 필요하고 pip 설치는 필요 없습니다. 대시보드는 Chart.js를 CDN에서 받으므로 열 때 네트워크가 필요합니다.
+
 ## 업데이트
 
 ```bash
 claude plugin marketplace update team-plugins
 claude plugin update wiki@team-plugins
 claude plugin update ai-readiness-score@team-plugins
+claude plugin update harness@team-plugins
+claude plugin update improve-token-efficiency@team-plugins
 ```
